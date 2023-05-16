@@ -1,24 +1,19 @@
 import React, { useState } from "react";
 import { getCharacter } from "./helpers/getCharacter";
-import maleImg from "./images/men.png";
-import femaleImg from "./images/women.png";
-import naImg from "./images/na.png";
-
-const male = maleImg;
-const female = femaleImg;
-const na = naImg;
+import male from "./images/men.png";
+import female from "./images/women.png";
+import na from "./images/na.png";
 
 const avatarSource = {
   male,
   female,
-  na
-}
+  na,
+};
 
 let sourceImage;
 
 const CharacterCard = () => {
   const [data, setData] = useState({});
-  
 
   const fillCharacterCard = async () => {
     const id = Math.floor(Math.random() * 86) + 1;
@@ -29,19 +24,21 @@ const CharacterCard = () => {
   const handleClick = () => {
     fillCharacterCard();
     if (data.gender === "male") {
-      sourceImage = avatarSource.male
-    } else if (data.gender === "female"){
-      sourceImage = avatarSource.female
+      sourceImage = avatarSource.male;
+    } else if (data.gender === "female") {
+      sourceImage = avatarSource.female;
     } else {
-      sourceImage = avatarSource.na
+      sourceImage = avatarSource.na;
     }
   };
 
   return (
-    <div id="characterCard">
+    <div className="characterCard">
       <div className="generalInfo">
         <h2>{data.name}</h2>
-        <img src={sourceImage} alt="Star wars avatar" />
+        <div className="avatarContainer">
+          <img src={sourceImage} alt="Star wars avatar" />
+        </div>
       </div>
       <div className="specificInfo">
         <div className="left">
