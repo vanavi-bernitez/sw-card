@@ -21,16 +21,17 @@ const CharacterCard = () => {
     setData(characterData);
   };
 
-  const handleClick = () => {
-    fillCharacterCard();
-    if (data.gender === "male") {
-      sourceImage = avatarSource.male;
-    } else if (data.gender === "female") {
-      sourceImage = avatarSource.female;
-    } else {
-      sourceImage = avatarSource.na;
-    }
-  };
+  if (data.gender === "male") {
+    sourceImage = avatarSource.male;
+  } else if (data.gender === "female") {
+    sourceImage = avatarSource.female;
+  } else {
+    sourceImage = avatarSource.na;
+  }
+
+  if (Object.keys(data).length === 0) fillCharacterCard();
+
+  const handleClick = () => fillCharacterCard();
 
   return (
     <div className="characterCard">
@@ -42,17 +43,16 @@ const CharacterCard = () => {
       </div>
       <div className="specificInfo">
         <div className="left">
-          <p>{data.height}</p>
-          <p>{data.hairColor}</p>
-          <p>{data.skinColor}</p>
+          <p>Height: {data.height}</p>
+          <p>Hair color: {data.hairColor}</p>
+          <p>Skin color: {data.skinColor}</p>
         </div>
         <div className="right">
-          <p>{data.eyeColor}</p>
-          <p>{data.birthYear}</p>
-          <p>{data.gender}</p>
+          <p>Eye color: {data.eyeColor}</p>
+          <p>Birth year: {data.birthYear}</p>
+          <p>Gender: {data.gender}</p>
         </div>
       </div>
-
       <button onClick={handleClick}>Next character</button>
     </div>
   );
